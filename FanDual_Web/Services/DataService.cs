@@ -22,7 +22,7 @@ public class DataService(
     /// <param name="sportId">The ID of the sport.</param>
     /// <returns>Returns a task representing the asynchronous operation.
     /// The task will complete with the result indicating if the player was successfully added to the chart.</returns>
-    public async Task<bool> AddPlayerToChart(string positionCode, int playerId, int positionDepth, int teamId,
+    public async Task<bool> AddPlayerToChartAsync(string positionCode, int playerId, int positionDepth, int teamId,
         int sportId)
     {
         var result = await _depthChartClient.AddPlayerToChartAsync(new RequestAddPlayerToDepthChart
@@ -48,7 +48,7 @@ public class DataService(
     /// A task representing the asynchronous operation.
     /// The task will complete with the result indicating if the play was successfully removed from the chart.
     /// </returns>
-    public async Task<PlayerDepthViewModel> RemovePlayFromChart(string positionCode, int playerId, int teamId,
+    public async Task<PlayerDepthViewModel> RemovePlayFromChartAsync(string positionCode, int playerId, int teamId,
         int sportId)
     {
         var result = await _depthChartClient.RemovePlayerFromChartAsync(new RequestRemovePlayerFromDepthChart
@@ -107,7 +107,7 @@ public class DataService(
     /// <param name="sportId">The ID of the sport.</param>
     /// <returns>Returns a task representing the asynchronous operation.
     /// The task will complete with a List of PlayerViewModel objects representing the backup players.</returns>
-    public async Task<List<PlayerViewModel>> GetBackUps(
+    public async Task<List<PlayerViewModel>> GetBackUpsAsync(
         string positionCode,
         int playerId, int teamId,
         int sportId)
@@ -139,7 +139,7 @@ public class DataService(
     /// <returns>Returns a task representing the asynchronous operation.
     /// The task will complete with the DepthChartViewModel representing
     /// the full depth chart for the specified team and sport.</returns>
-    public async Task<DepthChartViewModel> GetFullDepthChart(int teamId, int sportId)
+    public async Task<DepthChartViewModel> GetFullDepthChartAsync(int teamId, int sportId)
     {
         var result = await _depthChartClient.GetFullDepthChartAsync(new RequestGetFullDepthChart
         {

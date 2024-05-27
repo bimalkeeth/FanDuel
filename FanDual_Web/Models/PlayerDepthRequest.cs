@@ -17,5 +17,5 @@ public class PlayerDepthRequestModel
     public required int PlayerId { get; set; }
 
     [JsonProperty(PropertyName = "player_depth")]
-    public int? PlayerDepth { get; set; }
+    public int PlayerDepth { get; set; }
 }

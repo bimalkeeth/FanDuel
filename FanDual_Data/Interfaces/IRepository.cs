@@ -11,7 +11,7 @@ public interface IRepository
     /// <param name="teamId"></param>
     /// <param name="sportId"></param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    public Task<bool> AddPlayerToChart(string positionCode, int playerId, int positionDepth,int teamId, int sportId);
+    public Task<bool> AddPlayerToChartAsync(string positionCode, int playerId, int positionDepth,int teamId, int sportId);
 
     /// <summary>
     /// Removes a player from the depth chart at a specified position and player ID.
@@ -21,7 +21,7 @@ public interface IRepository
     /// <param name="teamId"></param>
     /// <param name="sportId"></param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    public Task<Models.SportsPlayersDepth> RemovePlayFromChart(string positionCode, int playerId,int teamId, int sportId);
+    public Task<Models.SportsPlayersDepth> RemovePlayFromChartAsync(string positionCode, int playerId,int teamId, int sportId);
 
     /// <summary>
     /// Retrieves a list of backup players for a given position and player ID.
@@ -30,7 +30,7 @@ public interface IRepository
     /// <param name="playerId">The ID of the player for which to retrieve the backup players.</param>
     /// <returns>A task representing the asynchronous operation that returns a list of
     /// <see cref="Player"/> objects representing the backup players.</returns>
-    public Task<List<Models.Player>> GetBackUps(string positionCode, int playerId);
+    public Task<List<Models.Player>> GetBackUpsAsync(string positionCode, int playerId);
 
     /// <summary>
     /// Retrieves the full depth chart for a sport team.
@@ -39,5 +39,5 @@ public interface IRepository
     /// A task representing the asynchronous operation that returns an instance of DepthChart,
     /// which represents the full depth chart for the sport team.
     /// </returns>
-    public Task<Models.DepthChart> GetFullDepthChart(int teamId, int sportId);
+    public Task<Models.DepthChart> GetFullDepthChartAsync(int teamId, int sportId);
 }

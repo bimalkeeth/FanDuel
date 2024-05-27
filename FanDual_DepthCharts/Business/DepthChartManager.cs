@@ -13,7 +13,7 @@ public class DepthChartManager(ILogger<DepthChartManager> logger, IRepository re
     /// </summary>
     /// <param name="addPlayer">The request containing the player's information.</param>
     /// <returns>The response containing the success status of adding the player to the depth chart.</returns>
-    public async Task<ResponseAddPlayerToDepthChart> AddPlayerToChart(
+    public async Task<ResponseAddPlayerToDepthChart> AddPlayerToChartAsync(
         RequestAddPlayerToDepthChart addPlayer)
     {
         var error = addPlayer.ValidateRequest();
@@ -22,7 +22,7 @@ public class DepthChartManager(ILogger<DepthChartManager> logger, IRepository re
             throw error;
         }
 
-        var result = await repository.AddPlayerToChart(
+        var result = await repository.AddPlayerToChartAsync(
             addPlayer.PositionCode,
             (int)addPlayer.PlayerId,
             (int)addPlayer.PlayerDepth,
@@ -32,7 +32,7 @@ public class DepthChartManager(ILogger<DepthChartManager> logger, IRepository re
         return new ResponseAddPlayerToDepthChart { Success = result };
     }
 
-    public async Task<ResponseGetBackUps> GetBackups(
+    public async Task<ResponseGetBackUps> GetBackupsAsync(
         RequestGetBackUps request)
     {
         throw new NotImplementedException();
@@ -43,7 +43,7 @@ public class DepthChartManager(ILogger<DepthChartManager> logger, IRepository re
     /// </summary>
     /// <param name="request">The request containing the player's information.</param>
     /// <returns>The response containing the updated player depth.</returns>
-    public async Task<ResponseRemovePlayerFromDepthChart> RemovePlayerFromChart(
+    public async Task<ResponseRemovePlayerFromDepthChart> RemovePlayerFromChartAsync(
         RequestRemovePlayerFromDepthChart request)
     {
         var error = request.ValidateRequest();
@@ -52,7 +52,7 @@ public class DepthChartManager(ILogger<DepthChartManager> logger, IRepository re
             throw error;
         }
 
-        var result = await repository.RemovePlayFromChart(
+        var result = await repository.RemovePlayFromChartAsync(
             request.PositionCode,
             (int)request.PlayerId,
             (int)request.TeamId,
@@ -86,7 +86,7 @@ public class DepthChartManager(ILogger<DepthChartManager> logger, IRepository re
     /// </summary>
     /// <param name="request">The request containing the team ID and sport ID.</param>
     /// <returns>The response containing the full depth chart.</returns>
-    public async Task<ResponseGetFullDepthChart> GetFullDepthChart(RequestGetFullDepthChart request)
+    public async Task<ResponseGetFullDepthChart> GetFullDepthChartAsync(RequestGetFullDepthChart request)
     {
         var error = request.ValidateRequest();
         if(error!=null)
@@ -94,7 +94,7 @@ public class DepthChartManager(ILogger<DepthChartManager> logger, IRepository re
             throw error;
         }
 
-        var result = await repository.GetFullDepthChart((int)request.TeamId, (int)request.SportId);
+        var result = await repository.GetFullDepthChartAsync((int)request.TeamId, (int)request.SportId);
 
         var listHeadPosition =  new List<PositionHeader>();
 

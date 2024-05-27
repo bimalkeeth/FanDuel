@@ -16,7 +16,7 @@ public class DepthChartRepository(FanDualContext fanDualContext) : IRepository
     /// <param name="teamId"></param>
     /// <param name="sportId"></param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    public async Task<bool> AddPlayerToChart(
+    public async Task<bool> AddPlayerToChartAsync(
         string positionCode,
         int playerId, int positionDepth, int teamId, int sportId)
     {
@@ -69,7 +69,7 @@ public class DepthChartRepository(FanDualContext fanDualContext) : IRepository
     /// <param name="teamId"></param>
     /// <param name="sportId"></param>
     /// <returns>A task representing the asynchronous operation. The removed SportsPlayersDepth object if found, otherwise a new SportsPlayersDepth object.</returns>
-    public async Task<Models.SportsPlayersDepth> RemovePlayFromChart(
+    public async Task<Models.SportsPlayersDepth> RemovePlayFromChartAsync(
         string positionCode,
         int playerId, int teamId, int sportId)
     {
@@ -102,7 +102,7 @@ public class DepthChartRepository(FanDualContext fanDualContext) : IRepository
     /// <param name="playerId">The ID of the player for which to retrieve the backup players.</param>
     /// <returns>A task representing the asynchronous operation that returns a list of
     /// <see cref="Player"/> objects representing the backup players.</returns>
-    public async Task<List<Models.Player>> GetBackUps(
+    public async Task<List<Models.Player>> GetBackUpsAsync(
         string positionCode,
         int playerId)
     {
@@ -116,9 +116,9 @@ public class DepthChartRepository(FanDualContext fanDualContext) : IRepository
     /// A task representing the asynchronous operation that returns an instance of DepthChart,
     /// which represents the full depth chart for the sport team.
     /// </returns>
-    public async Task<Models.DepthChart> GetFullDepthChart(int teamId, int sportId)
+    public async Task<Models.DepthChart> GetFullDepthChartAsync(int teamId, int sportId)
     {
-        return await GetSportTeamDepthChart(teamId,sportId);
+        return await GetSportTeamDepthChartAsync(teamId,sportId);
     }
 
     /// <summary>
@@ -127,7 +127,7 @@ public class DepthChartRepository(FanDualContext fanDualContext) : IRepository
     /// <param name="teamId">The ID of the team.</param>
     /// <param name="sportId">The ID of the sport.</param>
     /// <returns>A task representing the asynchronous operation. The task result contains the depth chart.</returns>
-    private async Task<Models.DepthChart> GetSportTeamDepthChart(int teamId, int sportId)
+    private async Task<Models.DepthChart> GetSportTeamDepthChartAsync(int teamId, int sportId)
     {
         var data = await fanDualContext.DepthCharts
             .Include(dc => dc.Team)

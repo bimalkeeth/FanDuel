@@ -14,7 +14,7 @@ public interface IDataService
     /// <param name="sportId">The ID of the sport.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.
     /// The task result is a boolean indicating whether the player was added successfully.</returns>
-    public Task<bool> AddPlayerToChart(
+    public Task<bool> AddPlayerToChartAsync(
         string positionCode,
         int playerId, int positionDepth, int teamId, int sportId);
 
@@ -27,7 +27,7 @@ public interface IDataService
     /// <param name="sportId">The ID of the sport.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation. The task result is a
     /// <see cref="PlayerDepthViewModel"/> object representing the updated player depth information.</returns>
-    public Task<PlayerDepthViewModel> RemovePlayFromChart(
+    public Task<PlayerDepthViewModel> RemovePlayFromChartAsync(
         string positionCode,
         int playerId, int teamId, int sportId);
 
@@ -40,7 +40,7 @@ public interface IDataService
     /// <param name="sportId"></param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation. The task result is a <see cref="PlayerDepthViewModel"/>
     /// object representing the backups for the player and position.</returns>
-    public Task<List<PlayerViewModel>> GetBackUps(
+    public Task<List<PlayerViewModel>> GetBackUpsAsync(
         string positionCode, 
         int playerId,
         int teamId,
@@ -53,7 +53,7 @@ public interface IDataService
     /// <param name="sportId"> The ID of the sport.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation. The task result is a <see cref="DepthChartViewModel"/>
     /// object representing the full depth chart for the team and sport.</returns>
-    public Task<DepthChartViewModel> GetFullDepthChart(
+    public Task<DepthChartViewModel> GetFullDepthChartAsync(
         int teamId,
         int sportId);
 }
