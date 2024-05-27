@@ -31,7 +31,7 @@ lifetime.ApplicationStopping.Register(() =>
 });
 
 
-app.UseWhen(context => context.Connection.LocalPort == 5001,
+app.UseWhen(context => context.Connection.LocalPort == 53305,
     build =>
     {
         build.UseRouting();

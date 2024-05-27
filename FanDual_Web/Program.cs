@@ -1,5 +1,7 @@
 using FanDual_DepthCharts;
+using FanDual_Web.Interfaces;
 using FanDual_Web.MiddleWare;
+using FanDual_Web.Services;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
 using Microsoft.OpenApi.Models;
@@ -10,6 +12,21 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+var depthChartServiceUrl=builder.Configuration.GetSection("ServicesUrls").GetSection("DepthCharts");
+
+var chartServiceUrl = depthChartServiceUrl.Value ?? "localhost:53305";
+
+var channel = GrpcChannel.ForAddress(chartServiceUrl, new GrpcChannelOptions
+{
+    HttpHandler = new GrpcWebHandler(new HttpClientHandler())
+});
+
+var client = new DepthChart.DepthChartClient(channel);
+
+builder.Services.AddScoped<DepthChart.DepthChartClient>(s => new DepthChart.DepthChartClient(channel));
+builder.Services.AddTransient<IDataService, DataService>();
 
 builder.Services.AddControllers(options =>
 {
@@ -47,12 +64,7 @@ app.UseAuthorization();
 app.MapControllers();
 app.UseExceptionHandler("/Error");
 
-var channel = GrpcChannel.ForAddress("https://localhost:53305", new GrpcChannelOptions
-{
-    HttpHandler = new GrpcWebHandler(new HttpClientHandler())
-});
 
-var client = new DepthChart.DepthChartClient(channel);
 
 app.Run();
 

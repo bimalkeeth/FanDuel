@@ -45,9 +45,9 @@ message ResponseRemovePlayerFromDepthChart{
 // Request message for get backups.
 message RequestGetBackUps{
   string  position_code = 1;
-  string  player = 2;
-  string  sport = 3;
-  string  team = 4;
+  int64  player_id = 2;
+  int64  sport_id = 3;
+  int64  team_id = 4;
 }
 // Response message for get backups.
 message ResponseGetBackUps{
