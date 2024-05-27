@@ -38,3 +38,4 @@ cd FanDual-DepthCharts
 ### Contributing
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
 
+![image](https://github.com/bimalkeeth/FanDuel/assets/2996080/01d6b786-cac4-4beb-9b6f-49e640181883)
