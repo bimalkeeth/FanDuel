@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+option csharp_namespace = "FanDual_DepthCharts";
+
+package depthchart;
+
+
+service DepthChart {
+  // Add player to depth chart
+  rpc AddPlayerToChart (RequestAddPlayerToDepthChart) returns (ResponseAddPlayerToDepthChart);
+  // remove player from depth chart
+  rpc RemovePlayerFromChart (RequestRemovePlayerFromDepthChart) returns (ResponseRemovePlayerFromDepthChart);
+  // Get backup for the given player and position
+  rpc GetBackups (RequestGetBackUps) returns (ResponseGetBackUps);
+  // Get full depth chart for the team and sport
+  rpc GetFullDepthChart (RequestGetFullDepthChart) returns (ResponseGetFullDepthChart);
+}
+
+// Request message for adding player for chart.
+message RequestAddPlayerToDepthChart{
+  string  position_code = 1;
+  int64   player_id = 2;
+  int64   player_depth = 3;
+  int64   sport_id = 4;
+  int64   team_id = 5;
+}
+// Response message for adding player for chart.
+message ResponseAddPlayerToDepthChart{
+  bool success = 1;
+}
+
+// Request message for get remove player from chart.
+message RequestRemovePlayerFromDepthChart{
+  string  position_code = 1;
+  int64   player_id = 2;
+  int64  sport_id = 3;
+  int64  team_id = 4;
+}
+
+// Response message for get remove player from chart.
+message ResponseRemovePlayerFromDepthChart{
+  SportPlayerDepth  player_depth = 1;
+}
+
+// Request message for get backups.
+message RequestGetBackUps{
+  string  position_code = 1;
+  string  player = 2;
+  string  sport = 3;
+  string  team = 4;
+}
+// Response message for get backups.
+message ResponseGetBackUps{
+  repeated Player players = 1;
+}
+
+// Request message for get full charts.
+message RequestGetFullDepthChart{
+  int64  team_id = 1;
+  int64  sport_id = 2;
+}
+
+// Response message for get full charts.
+message ResponseGetFullDepthChart{
+  FullDepthChart  depth_chart = 1;
+}
+
+//-------------------------------------------
+// Messages
+//-------------------------------------------
+message SportPlayerDepth{
+  int64 id = 1;
+  int64 position_id = 2;
+  string  position_code = 3;
+  string  head_position_code = 4;
+  int64  head_position_id = 5;
+  int64  player_id = 6;
+  string  player_name = 7;
+  int64  position_depth = 8;
+  int64  sport_id = 9;
+  string sport_name = 10;
+  int64 team_id = 11;
+  string team_name = 12;
+}
+
+message Player{
+  int64  id = 1;
+  string  name = 2;
+  int64  number = 3;
+}
+
+message FullDepthChart{
+  string sport = 1;
+  string  team = 2;
+  repeated PositionHeader position_depth = 3;
+}
+
+message PositionHeader{
+  string header_code = 1;
+  map<string, Position> depth_positions = 2;
+}
+
+message Position{
+  repeated PlayerDepth players = 1;
+}
+
+message PlayerDepth{
+  int64  id = 1;
+  string  name = 2;
+  int64  number = 3;
+  int64  depth = 4;
+}
+

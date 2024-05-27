@@ -1,0 +1,30 @@
+﻿services:
+  fanduel_client:
+    image: fanduel_client
+    build:
+      context: .
+      dockerfile: FanDuel_Client/Dockerfile
+
+  fandual_web:
+    image: fandual_web
+    build:
+      context: .
+      dockerfile: FanDual_Web/Dockerfile
+
+  webapplication1:
+    image: webapplication1
+    build:
+      context: .
+      dockerfile: WebApplication1/Dockerfile
+
+  workerservice1:
+    image: workerservice1
+    build:
+      context: .
+      dockerfile: WorkerService1/Dockerfile
+
+  fandual_depthcharts:
+    image: fandual_depthcharts
+    build:
+      context: .
+      dockerfile: FanDual_DepthCharts/Dockerfile
