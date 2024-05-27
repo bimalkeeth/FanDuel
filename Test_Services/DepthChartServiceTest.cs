@@ -351,7 +351,7 @@ public class DepthChartServiceTest
             PositionId = 3,
             DepthCharts = new DepthChart
             {
-                TeamId = 3,
+                TeamId = 12,
                 Id = 3,
                 SportId = 2,
                 Sport = new Sport
@@ -397,7 +397,7 @@ public class DepthChartServiceTest
                 },
                 Team = new Team
                 {
-                    Id = 3,
+                    Id = 12,
                     Name = "Team 1",
                     
                     
@@ -435,6 +435,10 @@ public class DepthChartServiceTest
         });
         
         Assert.Equal(2,result.PlayerDepth.PlayerId);
+        Assert.Equal(12,result.PlayerDepth.TeamId);
+        Assert.Equal("NFL",result.PlayerDepth.SportName);
+        Assert.Equal("Team 1",result.PlayerDepth.TeamName);
+        Assert.Equal("David",result.PlayerDepth.PlayerName);
     }
 }
 
